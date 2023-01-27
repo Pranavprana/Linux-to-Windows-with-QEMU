@@ -113,12 +113,12 @@ if [ $availableRAM -ge 4650 ] ; then # opened 2nd if
 				idx=$((idx+1));
 				done
 				if [ $partition = 0 ] ;then 
-					echo "creating disk image"
+					echo "creating disk image13"
 					sudo dd if=/dev/zero of=/disk.img bs=1024k seek=$newDisk count=0
 					custom_param_disk="/disk.img"
 				fi
 			else
-				echo "creating disk image"
+				echo "creating disk image 14"
 				sudo dd if=/dev/zero of=/disk.img bs=1024k seek=$newDisk count=0
 				custom_param_disk="/disk.img"
 			fi
@@ -136,12 +136,12 @@ else
 			idx=$((idx+1));
 			done
 			if [ $partition = 0 ] ;then 
-				echo "creating disk image"
+				echo "creating disk image12"
 				sudo dd if=/dev/zero of=/disk.img bs=1024k seek=$newDisk count=0
 				custom_param_disk="/disk.img"
 			fi
 		else
-			echo "creating disk image"
+			echo "creating disk image 11"
 			sudo dd if=/dev/zero of=/disk.img bs=1024k seek=$newDisk count=0
 			custom_param_disk="/disk.img"
 		fi
@@ -172,11 +172,11 @@ if [ $availableRAM -ge 4650 ] ; then
 		format=""
 		mounted=1
 	else
-		echo "using secondary disk for installation."
+		echo "using secondary disk for installation. 1"
 		custom_param_disk=$(fdisk -l | grep "Disk /dev/" | awk 'NR==2' | cut -f2 -d" " | cut -f1 -d":") # 2nd disk chosen
 	fi
 else
-	echo "using secondary disk for installation.."
+	echo "using secondary disk for installation.2."
 	custom_param_disk=$(fdisk -l | grep "Disk /dev/" | awk 'NR==2' | cut -f2 -d" " | cut -f1 -d":")
 fi
 fi # closed 1st if
