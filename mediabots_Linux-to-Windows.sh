@@ -113,12 +113,12 @@ if [ $availableRAM -ge 4650 ] ; then # opened 2nd if
 				idx=$((idx+1));
 				done
 				if [ $partition = 0 ] ;then 
-					echo "creating disk image"
+					echo "creating disk image 1444"
 					sudo dd if=/dev/zero of=/disk.img bs=1024k seek=$newDisk count=0
 					custom_param_disk="/disk.img"
 				fi
 			else
-				echo "creating disk image"
+				echo "creating disk image 3333"
 				sudo dd if=/dev/zero of=/disk.img bs=1024k seek=$newDisk count=0
 				custom_param_disk="/disk.img"
 			fi
