@@ -14,21 +14,12 @@ else
 #rm -f /sw.iso /disk.img 
 # installing required Ubuntu packages
 dist=$(hostnamectl | egrep "Operating System" | cut -f2 -d":" | cut -f2 -d " ")
-if [ $dist = "CentOS" ] ; then
-	printf "Y\n" | yum install sudo -y
-	sudo yum install wget vim curl genisoimage -y
-	# Downloading Portable QEMU-KVM
-	echo "Downloading QEMU"
-	sudo yum update -y
-	sudo yum install -y qemu-kvm
-elif [ $dist = "Ubuntu" -o $dist = "Debian" ] ; then
-	printf "Y\n" | apt-get install sudo -y
-	sudo apt-get install vim curl genisoimage -y
-	# Downloading Portable QEMU-KVM
-	echo "Downloading QEMU"
-	sudo apt-get update
-	sudo apt-get install -y qemu-kvm
-fi
+printf "Y\n" | apt-get install sudo -y
+sudo apt-get install vim curl genisoimage -y
+# Downloading Portable QEMU-KVM
+echo "Downloading QEMU"
+sudo apt-get update
+sudo apt-get install -y qemu-kvm
 sudo ln -s /usr/bin/genisoimage /usr/bin/mkisofs
 # Downloading resources
 sudo mkdir /mediabots /floppy /virtio
