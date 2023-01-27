@@ -241,6 +241,7 @@ custom_param_ram="-m "$(expr $availableRAM - 200 )"M"
 custom_param_ram2="-m "$(expr $availableRAM - 500 )"M"
 echo $custom_param_ram
 echo "[..] running QEMU-KVM again"
+echo -e "${BLUE}${other_drives} ${$custom_param_disk} ${NC}"
 $qemupath -net nic -net user,hostfwd=tcp::3389-:3389,hostfwd=tcp::65534-:65534 -m 4100 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=$cpus -vga std -machine type=pc,accel=kvm -usb -device usb-tablet -k en-us -drive file=$custom_param_disk,index=0,media=disk -drive file=$custom_param_sw,index=1,media=cdrom $other_drives -boot c -vnc :9 &
 pid2=$(echo $! | head -1)
 disown -h $pid2
