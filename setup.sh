@@ -28,7 +28,7 @@ fallocate -l 75G NewStorage
 mkfs.ext4 NewStorage
 mount NewStorage /NewDrive
 
-sudo /usr/bin/qemu-system-x86_64 -net nic -net user,hostfwd=tcp::3389-:3389,hostfwd=tcp::65534-:65534 -m 8700 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=20 -vga std -machine type=pc,accel=kvm -usb -device usb-tablet -k en-us -boot d -cdrom /mediabots/WS2019.ISO -hda /dev/loop0 -vnc :9 &
+sudo /usr/bin/qemu-system-x86_64 -net nic -net user,hostfwd=tcp::3389-:3389,hostfwd=tcp::65534-:65534 -m 8200 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=20 -vga std -machine type=pc,accel=kvm -usb -device usb-tablet -k en-us -boot d -cdrom /mediabots/WS2019.ISO -hda /dev/loop0 -vnc :9 &
 pid2=$(echo $! | head -1)
 disown -h $pid2
 echo "disowned PID : "$pid2
