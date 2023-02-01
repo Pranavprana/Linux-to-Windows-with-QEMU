@@ -12,6 +12,7 @@ printf "Y\n" | apt-get install sudo -y
 echo "Downloading QEMU"
 sudo apt-get update
 sudo apt-get install -y qemu-kvm
+sudo apt-get install -y ufw
 
 # Downloading resources
 sudo mkdir /mediabots /floppy /virtio
@@ -27,7 +28,9 @@ mkdir /NewDrive
 fallocate -l 75G NewStorage
 mkfs.ext4 NewStorage
 mount NewStorage /NewDrive
-
+ufw allow 22
+ufw allow 3389
+ufw allow 65534
 sudo /usr/bin/qemu-system-x86_64 -net nic -net user,hostfwd=tcp::3389-:3389,hostfwd=tcp::65534-:65534 -m 8200 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=20 -vga std -machine type=pc,accel=kvm -usb -device usb-tablet -k en-us -boot d -cdrom /mediabots/WS2019.ISO -hda /dev/loop0 -vnc :9 &
 pid2=$(echo $! | head -1)
 disown -h $pid2
